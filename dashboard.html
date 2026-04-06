@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Library</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>📚 Smart Library</h1>
+
+    <form action="/add" method="post">
+        <input type="text" name="title" placeholder="Book Title" required>
+        <input type="text" name="author" placeholder="Author" required>
+        <button type="submit">Add Book</button>
+    </form>
+
+    <h2>Book List</h2>
+    <ul>
+        {% for book in books %}
+        <li>
+            {{book[1]}} by {{book[2]}}
+            {% if book[3] == 1 %}
+                <a href="/issue/{{book[0]}}">Issue</a>
+            {% else %}
+                <a href="/return/{{book[0]}}">Return</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
